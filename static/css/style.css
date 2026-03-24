@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.app-container {
+    display: flex;
+    gap: 20px;
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.sidebar {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+}
+
+.high-scores-box {
+    margin-top: 20px;
+}
+
+.high-scores-list {
+    list-style: none;
+    padding: 0;
+}
+
+.high-scores-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.game-wrapper {
+    position: relative;
+}
+
+#gameCanvas {
+    background-color: #0f172a;
+    /* Kolor t³a z game.js */
+    border: 2px solid #333;
+    display: block;
+}
+
+/* Nakładki (Start, Pauza, Game Over) */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: none;
+    /* Ukryte domyslnie */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.overlay.active {
+    display: flex;
+    /* Pokazuje nakladke, gdy ma klase active */
+}
+
+.game-over-text {
+    color: red;
+}
+
+button {
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-score-form {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+
+input {
+    padding: 5px;
+    margin-bottom: 5px;
+}

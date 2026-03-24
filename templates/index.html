@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gra Snake - Projekt</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="app-container">
+        <div class="sidebar">
+            <h1>Gra Snake</h1>
+            <h2>Wynik: <span id="aktualnyWynik">0</span></h2>
+
+            <div class="high-scores-box">
+                <h3>Najlepsze wyniki:</h3>
+                <ol id="listaWynikow">
+                    <li>Brak wyników</li>
+                </ol>
+            </div>
+
+            <p><strong>Sterowanie:</strong> Strzałki</p>
+        </div>
+        <div class="game-wrapper">
+            <canvas id="plansza" width="500" height="500"></canvas>
+
+            <div id="ekranStart" class="overlay active">
+                <h2>Gotowy?</h2>
+                <button onclick="rozpocznijGre()">Zacznij Grę</button>
+            </div>
+
+
+            <div id="ekranKoniec" class="overlay">
+                <h2 class="game-over-text">Koniec Gry!</h2>
+                <h3>Twój wynik: <span id="wynikKoncowy">0</span></h3>
+
+                <div class="submit-score-form">
+                    <input type="text" id="nazwaGracza" placeholder="Podaj swoje imię">
+                    <button onclick="zapiszWynik()">Zapisz wynik</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+</body>
+
+</html>
