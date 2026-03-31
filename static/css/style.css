@@ -1,7 +1,25 @@
+:root {
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --bg-card: #0f0f23;
+    --text-primary: #eaeaea;
+    --text-secondary: #b8b8b8;
+    --accent-color: #4CAF50;
+    --accent-hover: #66BB6A;
+    --food-color: #f44336;
+    --game-bg: #0f0f1a;
+    --border-color: #2a2a4a;
+    --overlay-bg: rgba(15, 15, 30, 0.95);
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     margin: 0;
     display: flex;
     justify-content: center;
@@ -12,84 +30,165 @@ body {
 .app-container {
     display: flex;
     gap: 20px;
-    background: #fff;
+    background: var(--bg-secondary);
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .sidebar {
     width: 250px;
     display: flex;
     flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar h1 {
+    margin: 0;
+    color: var(--accent-color);
+    font-size: 1.8em;
+    text-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+.sidebar h2 {
+    margin: 10px 0;
+    color: var(--text-secondary);
+}
+
+.sidebar h3 {
+    margin: 0 0 10px 0;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 5px;
 }
 
 .high-scores-box {
-    margin-top: 20px;
+    background: var(--bg-card);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
 }
 
-.high-scores-list {
-    list-style: none;
-    padding: 0;
+.high-scores-box ol {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--text-secondary);
 }
 
-.high-scores-list li {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 0;
-    border-bottom: 1px solid #eee;
+.high-scores-box li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.high-scores-box li:last-child {
+    border-bottom: none;
 }
 
 .game-wrapper {
     position: relative;
 }
 
-#gameCanvas {
-    background-color: #0f172a;
-    /* Kolor t³a z game.js */
-    border: 2px solid #333;
+#plansza {
+    background-color: var(--game-bg);
+    border: 2px solid var(--accent-color);
+    border-radius: 5px;
     display: block;
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.2);
 }
 
-/* Nakładki (Start, Pauza, Game Over) */
 .overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--overlay-bg);
     display: none;
-    /* Ukryte domyslnie */
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    border-radius: 5px;
 }
 
 .overlay.active {
     display: flex;
-    /* Pokazuje nakladke, gdy ma klase active */
+}
+
+.overlay h2 {
+    margin: 0 0 20px 0;
+    color: var(--text-primary);
+    font-size: 2em;
 }
 
 .game-over-text {
-    color: red;
+    color: var(--food-color);
+    text-shadow: 0 0 15px rgba(244, 67, 54, 0.5);
 }
 
 button {
-    padding: 10px;
+    padding: 12px 24px;
     margin: 5px;
     cursor: pointer;
     font-size: 16px;
+    background: var(--accent-color);
+    color: var(--bg-primary);
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+button:hover {
+    background: var(--accent-hover);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
 }
 
 .submit-score-form {
     display: flex;
     flex-direction: column;
     margin: 10px 0;
+    gap: 10px;
 }
 
 input {
-    padding: 5px;
+    padding: 12px;
     margin-bottom: 5px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+input::placeholder {
+    color: var(--text-secondary);
+}
+
+#aktualnyWynik {
+    color: var(--accent-color);
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+#wynikKoncowy {
+    color: var(--food-color);
+}
+
+p {
+    margin: 10px 0 0 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+p strong {
+    color: var(--text-primary);
 }

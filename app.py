@@ -4,17 +4,17 @@ import os
 
 app = Flask(__name__)
 
-# Funkcja do wczytywania wyników z pliku tekstowego
+SCORES_FILE = os.environ.get('SCORES_FILE', 'scores.json')
+
 def czytaj_wyniki():
-    if not os.path.exists('scores.json'):
+    if not os.path.exists(SCORES_FILE):
         return []
     
-    with open('scores.json', 'r') as plik:
+    with open(SCORES_FILE, 'r') as plik:
         return json.load(plik)
 
-# Funkcja do zapisywania wyników
 def zapisz_wyniki(wyniki):
-    with open('scores.json', 'w') as plik:
+    with open(SCORES_FILE, 'w') as plik:
         json.dump(wyniki, plik)
 
 # Glowna strona z gra
@@ -40,9 +40,12 @@ def pobierz_wyniki():
 @app.route('/api/scores', methods=['POST'])
 def dodaj_wynik():
     dane = request.json
+    
+    if not dane or 'player' not in dane or 'score' not in dane:
+        return jsonify({"error": "Missing player or score"}), 400
+    
     wyniki = czytaj_wyniki()
     
-    # Tworzymy slownik z nowym wynikiem wprost od przegladarki
     nowy_wynik = {
         "player": dane['player'],
         "score": dane['score']
